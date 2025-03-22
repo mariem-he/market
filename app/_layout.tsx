@@ -6,7 +6,11 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{flex:1, backgroundColor: COLORS.background,}}>
-        <Stack screenOptions={{headerShown: false }}/>
+      <Stack>
+        <Stack.Screen name="index" options={{ title: 'Home' }} />
+        <Stack.Screen name="auth/LoginScreen" options={{ title: 'Login' }} />
+        <Stack.Screen name="auth/SignupScreen" options={{ title: 'Sign Up' }} />
+      </Stack>
       </SafeAreaView>
     </SafeAreaProvider>
   );
