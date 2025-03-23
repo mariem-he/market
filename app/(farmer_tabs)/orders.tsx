@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function Bookmarks() {
+export default function orders() {
   return (
     <View>
-      <Text>Bookmarks screen</Text>
+      <Text>orders screen</Text>
     </View>
   );
 }

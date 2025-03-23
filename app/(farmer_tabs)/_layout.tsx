@@ -22,33 +22,33 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="dashboard"
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name="home" size={24} color={color} />,
+          tabBarIcon: ({ size, color }) => <Ionicons name="grid" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="bookmarks"
+        name="add_product"
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name="bookmark" size={24} color={color} />,
+          tabBarIcon: ({ size, color }) => <Ionicons name="add" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="cart"
+        name="orders"
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name="cart" size={24} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="sell"
-        options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name="add-circle" size={30} color={color} />,
+          tabBarIcon: ({ size, color }) => <Ionicons name="receipt" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="notifications"
         options={{
-          tabBarIcon: ({ size, color }) => <Ionicons name="notifications" size={24} color={color} />,
+          tabBarIcon: ({ size, color }) => <Ionicons name="notifications" size={30} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="chats"
+        options={{
+          tabBarIcon: ({ size, color }) => <Ionicons name="chatbubble" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
