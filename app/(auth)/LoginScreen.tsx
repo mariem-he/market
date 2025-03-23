@@ -144,7 +144,7 @@ const LoginScreen: React.FC = () => {
         
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => router.push('/(auth)/SignupScreen')}>
+          <TouchableOpacity onPress={() => router.push('/(auth)/Signupscreen')}>
             <Text>Go to Sign Up</Text>
           </TouchableOpacity>
         </View>
