@@ -3,12 +3,14 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, In
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse, User } from '@/.expo/types/auth';
 import { ApiResponse } from '@/.expo/types/api';
+import { Product } from '@/.expo/types/product';
 //import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, LogoutResponse,ApiResponse,User} from '';
 
 // Create API base URL
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'http://127.0.0.1:8000';
 
 class ApiService {
+  [x: string]: any;
   private api: AxiosInstance;
 
   constructor() {
@@ -106,6 +108,9 @@ class ApiService {
       password_confirmation
     });
     return response.data;
+  }
+  static async getProducts(): Promise<{ data: Product[] }> {
+    return axios.get('/api/products');
   }
 }
 

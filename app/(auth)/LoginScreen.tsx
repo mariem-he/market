@@ -1,21 +1,13 @@
 // LoginScreen.tsx
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  StyleSheet, 
-  Image, 
-  ActivityIndicator, 
-  Alert 
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ActivityIndicator, Alert } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Link, useNavigation } from '@react-navigation/native';
 import { styles } from '@/styles/auth.styles';
 import { router } from 'expo-router';
+import ApiService from '@/services/api';
 
 // Define types
 type RootStackParamList = {
@@ -59,31 +51,37 @@ const LoginScreen: React.FC = () => {
     
     try {
       // Call Laravel Sanctum login endpoint
-      const response = await axios.post<LoginResponse>('https://your-api-url.com/api/login', {
+      const response = await ApiService.login({
         email,
         password
       });
       
       // Store auth token
-      await AsyncStorage.setItem('userToken', response.data.token);
-      await AsyncStorage.setItem('userRole', response.data.user.role);
-      await AsyncStorage.setItem('userId', response.data.user.id.toString());
+      await AsyncStorage.setItem('userToken', response.token);
+      if (response.user && response.user.role) {
+        await AsyncStorage.setItem('userRole', response.user.role);
+        await AsyncStorage.setItem('userId', response.user.id.toString());
+
       
-      // Navigate to appropriate dashboard based on role
-      switch(response.data.user.role) {
-        case 'admin':
-          navigation.reset({ index: 0, routes: [{ name: 'AdminDashboard' }] });
-          break;
-        case 'farmer':
-          navigation.reset({ index: 0, routes: [{ name: 'FarmerDashboard' }] });
-          break;
-        case 'buyer':
-          navigation.reset({ index: 0, routes: [{ name: 'BuyerDashboard' }] });
-          break;
-        default:
-          navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
+        // Navigate to appropriate dashboard based on role
+        switch(response.user.role) {
+          case 'admin':
+            //router.replace('/admin');
+            break;
+          case 'farmer':
+            router.replace('/(farmer_tabs)/dashboard');
+            break;
+          case 'buyer':
+            router.replace('/(buyer_tabs)');
+            break;
+          default:
+            router.replace('/');
+        }
+      } else {
+        // If role information is missing
+        router.replace('/');
       }
-      
+        
     } catch (error) {
       console.error('Login error:', error);
       Alert.alert(
@@ -137,7 +135,7 @@ const LoginScreen: React.FC = () => {
         
         <TouchableOpacity 
           style={styles.forgotPasswordButton}
-          onPress={() => navigation.navigate('ForgotPassword')}
+          onPress={() => router.push('./EmailScreen')}
         >
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
