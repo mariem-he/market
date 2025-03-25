@@ -44,8 +44,6 @@ export interface RegisterResponse {
   message: string;
   token: string;
   user: User;
-  // Remove the index signature if not needed
-  // Or make it compatible with the other properties:
   [x: string]: string | boolean | User | undefined;
 }
 
