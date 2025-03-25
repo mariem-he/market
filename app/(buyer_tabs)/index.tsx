@@ -127,7 +127,7 @@ const CategoriesScreen = ({ navigation }: any) => {
   );
 };
 
-// CATEGORY PRODUCTS SCREEN (Add this to your navigation stack)
+// CATEGORY PRODUCTS SCREEN
 const CategoryProductsScreen = ({ route }: any) => {
   const { categoryId } = route.params;
   const [products, setProducts] = useState<Product[]>([]);

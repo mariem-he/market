@@ -1,0 +1,20 @@
+export type RootStackParamList = {
+    Splash: undefined;
+    Login: undefined;
+    Signup: undefined;
+    ForgotPassword: undefined;
+    AdminDashboard: undefined;
+    FarmerDashboard: undefined;
+    BuyerDashboard: undefined;
+    Home: undefined;
+    ProductDetails: { productId: number };
+    CreateProduct: undefined;
+    MyProducts: undefined;
+    Orders: undefined;
+    OrderDetails: { orderId: number };
+    Profile: undefined;
+    EditProfile: undefined;
+    Wallet: undefined;
+    Transactions: undefined;
+    SmartContractDetails: { contractId: number };
+  };
